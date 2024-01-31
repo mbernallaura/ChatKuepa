@@ -13,9 +13,12 @@ const io = new SocketServer(server,{
 io.on('connection', socket =>{
     console.log('Client connected');
 
-    socket.on('message', (data) =>{ //Este es un evento el cual escucha lo que le manda el frontend
-        console.log(data);
-        socket.broadcast.emit('messageAll', data); //va a enviar a los usuarios que no enviaron el mensaje, el mensaje ahora al frontend
+    socket.on('message', (body) =>{ //Este es un evento el cual escucha lo que le manda el frontend
+        console.log(body);
+        socket.broadcast.emit('messageAll', {
+            body,//contenido del mensaje
+            from: socket.id.slice(6)
+        }); //va a enviar a los usuarios que no enviaron el mensaje, el mensaje ahora al frontend
     })
 })
 
