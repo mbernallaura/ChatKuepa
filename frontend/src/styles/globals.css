@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+  --orangeK: #fd531e;
+  --blueK: #1280b0;
+  --blackE: #292929;
+  --whiteK: #ffffff;
+}
+
 *{
   margin: 0;
   padding: 0;
