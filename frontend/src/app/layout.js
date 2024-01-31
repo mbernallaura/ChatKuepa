@@ -12,7 +12,7 @@ export default async function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className="font-dmsans">
-                { children }
+                    { children }
             </body>
         </html>
     )

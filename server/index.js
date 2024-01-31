@@ -11,7 +11,6 @@ const io = new SocketServer(server,{
 });
 
 io.on('connection', socket =>{
-    console.log('Client connected');
 
     socket.on('message', (body) =>{ //Este es un evento el cual escucha lo que le manda el frontend
         console.log(body);

@@ -7,6 +7,8 @@ const socket = io('http://localhost:4000');
 const ChatPage = () => {
     const [sendMessage, setSendMessage] = useState('');
     const [getMessages, setGetMessages] = useState([]);
+    const name = localStorage.getItem('name');
+    console.log(name);
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -34,9 +36,10 @@ const ChatPage = () => {
 
     return (
         <div className='h-screen w-screen flex items-center justify-center bg-greyK'>
-            <div className='h-[calc(100%-10%)] w-[calc(100%-20%)] p-2 rounded-3xl bg-whiteK'>
-                <main className='h-[calc(100%-5%)] pb-4 flex flex-grow justify-end items-end'>
-                    <ul className='w-full'>
+            <div className='h-[calc(100%-10%)] w-[calc(100%-20%)] p-4 rounded-3xl bg-whiteK'>
+                <div className='w-full p-2 border-b-2 border-greyk text-lg text-blueK'>Clases virtuales</div>
+                <main className='h-[calc(100%-10%)] pb-4 flex flex-grow justify-end items-end overflow-y-auto'>
+                    <ul className='w-full max-h-full'>
                         {
                             getMessages.map((message, index)=>(
                                 <li key={index} className={`my-2 p-2 table text-base rounded-lg text-whiteK  ${message.from === 'Yo' ? 'bg-orangeK ml-auto' : 'bg-blueK' }`}>
@@ -46,16 +49,15 @@ const ChatPage = () => {
                         }
                     </ul>
                 </main>
-                {/* <footer className='flex w-full justify-end bg-red-600'> */}
-                    <form id='formulario' onSubmit={handleSubmit} className='w-full flex gap-2'>
-                        <input
-                            className='rounded-md p-2 w-full bg-orange-200'
-                            type='text'
-                            placeholder='Escribe un mensaje'
-                            onChange={(e)=> setSendMessage(e.target.value)}
-                        />
-                    </form>
-                {/* </footer> */}
+
+                <form id='formulario' onSubmit={handleSubmit} className='w-full flex gap-2'>
+                    <input
+                        className='rounded-md p-2 w-full bg-orange-200'
+                        type='text'
+                        placeholder='Escribe un mensaje'
+                        onChange={(e)=> setSendMessage(e.target.value)}
+                    />
+                </form>
             </div>
         </div>
     )
